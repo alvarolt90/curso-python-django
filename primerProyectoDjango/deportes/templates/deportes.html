@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{Titulopagina}}</title>
+    <title>{{titulo_pagina}}</title>
 </head>
 <body>
-  <h1>{{Titulopagina}}</h1>
-  <h3>{{Descripcion}}</h3>
-    <a href="{% url 'equipos' %}">Listado Equipos Mundial</a>
+    <h1>{{titulo_pagina}}</h1>
+    <h3>{{descripcion}}</h3>
+
+    <!--<a href="{% url 'listado_selecciones' %}">Listado Selecciones Mundial</a>-->
+    <a href="futbol/listado-selecciones?titulo=TablaSelecciones">Listado Selecciones Mundial</a>
 </body>
 </html>

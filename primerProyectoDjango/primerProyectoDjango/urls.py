@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from deportes.views import deportes
-from webapp.views import bienvenido, despedida, listar_alumnos, equipos
+from deportes.views import deportes, listar_selecciones
+from webapp.views import bienvenido, despedida, listar_alumnos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +25,6 @@ urlpatterns = [
     path('welcome/', bienvenido),
     path('goodbye/', despedida),
     path('deportes/', deportes, name='deportes'),
-    path('equipos/', equipos, name='equipos'),
+    path('deportes/futbol/listado-selecciones', listar_selecciones, name="listado_selecciones"),
     path('alumnos/listado_alumnos/', listar_alumnos, name='listado_alumnos'),
 ]

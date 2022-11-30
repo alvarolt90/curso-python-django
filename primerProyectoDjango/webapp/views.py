@@ -34,12 +34,20 @@ def equipos(request):
         # titulo = request.parameter("titulo")
         titulo = request.GET['titulo']
 
+    #DATOS RECOGIDOS DEL FORMULARIO PARA AÑADIRLOS AL DICCIONARIO
+    seleccion = request.POST['seleccion']
+    continente = request.POST['continente']
+    num_mundiales = request.POST['num_mundiales']
+    nueva_seleccion = {"nombre":seleccion, "continente":continente, "num_mundiales":num_mundiales}
+
     espania = {"nombre": "España", "continente": "Europa", "num_mundiales": 1}
     brasil = {"nombre": "Brasil", "continente": "America", "num_mundiales": 5}
     francia = {"nombre": "Francia", "continente": "Europa", "num_mundiales": 2}
     senegal = {"nombre": "Senegal", "continente": "Africa", "num_mundiales": 0}
 
     lista_selecciones = [espania, brasil, francia, senegal]
+    lista_selecciones.append(nueva_seleccion)
+
     if not continente_filtro == None:
         lista_selecciones = list(
             filter(lambda seleccion: seleccion["continente"] == continente_filtro, lista_selecciones))

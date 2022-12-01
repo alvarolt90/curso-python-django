@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insertar Clientes</title>
+</head>
+<body>
+    <form action="insertar" method="POST">
+        {%csrf_token%}
+        <label for="nombre">Nombre</label><input type="text" id="nombre" name="nombre">
+        <label for="apellidos">Apellidos</label><input type="text" id="apellidos" name="apellidos">
+        <label for="dni">DNI</label><input type="text" id="dni" name="dni">
+        <label for="email">Email</label><input type="text" id="email" name="email">
+        <input type="hidden" name="action" value="guardar">
+        <input type="submit" value="Guardar">
+        <h4 style="color: green">{{mensaje}}</h4>
+    </form>
+</body>
+</html>

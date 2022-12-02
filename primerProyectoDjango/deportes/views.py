@@ -1,5 +1,6 @@
+from django.forms import modelform_factory
 from django.shortcuts import render, get_object_or_404
-
+from deportes.models import Jugador
 
 # Create your views here.
 def deportes(request):
@@ -33,3 +34,26 @@ def listar_selecciones(request):
                 "listado_continentes": ["Europa", "America", "Asia", "Africa", "Oceania"]}
 
     return render(request, "listado_selecciones_mundial.html", contexto)
+
+def listado_jugadores(request):
+    jugadores = Jugador.objects.all()
+    contexto = {"lista_jugadores": jugadores}
+    return render(request, "jugadores.html", contexto)
+
+
+JugadorForm = modelform_factory(Jugador, exclude=[])
+def nuevo_jugador(request):
+    mensaje = ''
+    if request.method == 'POST':
+        try:
+            jugador_form = JugadorForm(request.POST)
+            jugador_form.save()
+        except Exception as e:
+            mensaje = f'Error al insertar el jugador {e}'
+        else:
+            mensaje = "Jugador insertado correctamente"
+
+    jugador_form = JugadorForm()
+
+    contexto = {"jugador_form": jugador_form, "mensaje": mensaje}
+    return render(request, "nuevo_jugador.html", contexto)

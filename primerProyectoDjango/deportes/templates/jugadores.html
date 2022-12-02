@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jugadores</title>
+</head>
+<body>
+    <form action="listado_jugadores" method="POST">
+            {%csrf_token%}
+            <fieldset>
+                <legend>Filtro</legend>
+                <label>Posicion: <input type="text" name="posicion" list="posicion"/>
+                    <datalist id="posicion">
+                        <option value="{{jugador.posicion}}"></option>
+                    </datalist>
+                </label>
+                <label>Nacionalidad: <input type="text" name="nacionalidad" list="nacionalidad"/>
+                    <datalist id="nacionalidad">
+                        <option value="{{jugador.nacionalidad}}"></option>
+                    </datalist>
+                </label>
+                <label>Equipo: <input type="text" name="equipo" list="equipo"/>
+                    <datalist id="equipo">
+                        <option value="{{jugador}}"></option>
+                    </datalist>
+                </label>
+                <input type="hidden" name="titulo" value="{{titulo_tabla}}">
+                <input type="submit" value="Filtrar"/>
+            </fieldset>
+        </form>
+        <h2>Listado de Jugadores</h2>
+        <table title="{{titulo_tabla}}">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Equipo</th>
+                    <th>Edad</th>
+                    <th>Nacionalidad</th>
+                    <th>Posición</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for jugador in lista_jugadores %}
+                <tr>
+                    <td>{{jugador.nombre}}</td>
+                    <td>{{jugador.equipo}}</td>
+                    <td>{{jugador.edad}}</td>
+                    <td>{{jugador.nacionalidad}}</td>
+                    <td>{{jugador.posicion}}</td>
+                    <td><input type="submit" value="Eliminar"/><input type="submit" value="Actualizar"/></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <button><a href="nuevo_jugador">Nuevo</a></button>
+</body>
+</html>
